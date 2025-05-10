@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LEARNING</title>
+</head>
+{% extends "base.html" %}
+<body>
+    {% block content %}
+{% for i in post %}
+<div class="post-entry">
+
+ <h2><a href="{{ i.get_absolut_url }}">{{ i.TITLE }}</a></h2>
+
+ <p>Author: {{ i.AUTHOR }}</a>
+ <p>{{ i.BODY }}</p>
+</div>
+{% endfor %}
+{% endblock content %}”
+
+</body>
+</html>
