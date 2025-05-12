@@ -9,9 +9,11 @@
 
   <body>
     <div class="post-entry">
-      <h2>{{ post.TITLE }}</h2>
-      <p>Author: {{ post.AUTHOR }}</p>
-      <p>{{ post.BODY }}</p>
+      <p><h2>{{ blog.TITLE }}</h2></p>
+      <p>Author: {{ blog.AUTHOR }}</p>
+      <p>{{ blog.BODY }}</p>
+      <p><a href="{% url 'post_delete' blog.pk %}">+ Delete Blog Post</a></p> 
     </div>
+  <a href="{% url 'post_edit' blog.pk %}">+ Edit Blog Post</a>
   </body>
 </html>

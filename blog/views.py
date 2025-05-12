@@ -1,11 +1,30 @@
-from django.shortcuts import render, get_object_or_404
+from django.views.generic import ListView, DetailView
 from .models import Blog
- 
+from django.views.generic.edit import CreateView,UpdateView,DeleteView
+from django.urls import reverse_lazy
 
-def post_list(request):
-    post = Blog.objects.all()
-    return render(request,"home.html",{"post":post})
+class BlogListView(ListView):
+    model = Blog 
+    template_name = "home.html"
 
-def post_detail(request,pk):
-    post = get_object_or_404(Blog,pk = pk )
-    return render (request,"post_detail.html",{"post":post})
+
+class BlogDetailView(DetailView):
+    model = Blog
+    template_name = "blog_detail.html"
+
+class BlogCreateView(CreateView):
+    model = Blog 
+    fields = ['TITLE','AUTHOR','BODY']
+    template_name = "blog_form.html"
+    success_url = reverse_lazy("home")
+
+class BlogUpdateView(UpdateView):
+    model = Blog
+    fields = ['TITLE','BODY']
+    template_name = "blog_edit_form.html"
+    success_url = reverse_lazy("home")
+
+class BlogDeleteView(DeleteView):
+    model = Blog 
+    template_name = "blog_delete.html"
+    success_url = reverse_lazy("home")

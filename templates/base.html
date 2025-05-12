@@ -9,9 +9,25 @@
   <body>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/base.css' %}" />
-    <header>
-      <h1><a href="{% url 'home' %}">Django blog</a></h1>
-    </header>
+    <br />
+    <h2><a href="{% url 'home' %}">Django blog</a></h2>
+    <header></header>
+
+    {% if user.is_authenticated %}
+
+    <h2><p>Welcome, {{ user.username }}!</p></h2>
+    <br />
+    <form action="{% url 'logout' %}" method="post">
+      {% csrf_token %}
+      <button type="submit">Log Out</button>
+    </form>
+    <br />
+    {% else %}
+    <p>You are not logged in.</p>
+    <a href="{% url 'login' %}">Log In</a> |
+    <a href="{% url 'signup' %}">Sign Up</a>
+
+    {% endif %}
     <div>{% block content %} {% endblock %}</div>
   </body>
 </html>
